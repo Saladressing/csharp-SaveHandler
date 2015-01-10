@@ -1,0 +1,6 @@
+G:\Documents\GitHub\csharp-SaveHandler\SaveHandler\bin\Debug\SaveHandler.exe.config
+G:\Documents\GitHub\csharp-SaveHandler\SaveHandler\bin\Debug\SaveHandler.exe
+G:\Documents\GitHub\csharp-SaveHandler\SaveHandler\bin\Debug\SaveHandler.pdb
+G:\Documents\GitHub\csharp-SaveHandler\SaveHandler\obj\Debug\SaveHandler.csprojResolveAssemblyReference.cache
+G:\Documents\GitHub\csharp-SaveHandler\SaveHandler\obj\Debug\SaveHandler.exe
+G:\Documents\GitHub\csharp-SaveHandler\SaveHandler\obj\Debug\SaveHandler.pdb

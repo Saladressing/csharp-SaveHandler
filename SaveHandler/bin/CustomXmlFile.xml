@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomXmlFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Title="CustomXmlFile">
+  <Element1>0</Element1>
+  <Element2>value</Element2>
+</CustomXmlFile>
