@@ -24,7 +24,7 @@ public class XmlFile
 ```  
 
 # <h3>Custom File</h3>
-The SaveHandler supports both inherited and custom files for use.
+The SaveHandler supports both inherited and custom files for use. Sample outputs can be found here: <a href="https://github.com/Palmer11/csharp-SaveHandler/tree/master/SaveHandler/bin">Sample Files</a>
 
 ```
 
