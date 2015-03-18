@@ -43,8 +43,8 @@ namespace Handler.Save
 
         /// <summary>
         /// Get a loaded file from
-        /// the hashtable. Will load
-        /// if non exists.
+        /// the hashtable. Will return
+        /// null if the file doesn't exist.
         /// </summary>
         /// <typeparam name="T">
         /// The files type.
