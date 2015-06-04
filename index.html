@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=640">
+
+    <link rel="stylesheet" href="stylesheets/core.css" media="screen">
+    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+
+    <script type="text/javascript" src="javascripts/modernizr.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#main_content').headsmart()
+      })
+    </script>
+    <title>Csharp-savehandler by Palmer11</title>
+  </head>
+
+  <body>
+    <a id="forkme_banner" href="https://github.com/Palmer11/csharp-SaveHandler">View on GitHub</a>
+    <div class="shell">
+
+      <header>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <h1>Csharp-savehandler</h1>
+            <h2>XML File Serialization. Save, Load, Remove, and Create XML files over serialization.</h2>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+      </header>
+
+      <section id="downloads">
+        <span class="inner">
+          <a href="https://github.com/Palmer11/csharp-SaveHandler/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/Palmer11/csharp-SaveHandler/tarball/master" class="tgz"><em>download</em> .TGZ</a>
+        </span>
+      </section>
+
+
+      <span class="banner-fix"></span>
+
+
+      <section id="main_content">
+        <h1>
+<a id="csharp-savehandler" class="anchor" href="#csharp-savehandler" aria-hidden="true"><span class="octicon octicon-link"></span></a>csharp-SaveHandler</h1>
+
+<h3>
+<a id="overview" class="anchor" href="#overview" aria-hidden="true"><span class="octicon octicon-link"></span></a>Overview</h3>
+
+<p>Xml File Serialization. Save, Load, Remove, and Create XML files over serialization.</p>
+
+<h1>
+<a id="generic-file" class="anchor" href="#generic-file" aria-hidden="true"><span class="octicon octicon-link"></span></a><h3>
+<a id="generic-file-1" class="anchor" href="#generic-file-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Generic File</h3>
+</h1>
+
+<p>The SaveHandler contains a basic default Xml file template. This class can be inherited for generic use.</p>
+
+<pre><code>[Serializable]
+public class XmlFile
+{
+    [XmlAttribute]
+    public string Title = string.Empty;
+
+    public XmlFile() { }
+
+    public XmlFile(string title)
+    {
+        Title = title;
+    }
+
+    ~XmlFile() { }
+}
+</code></pre>
+
+<h1>
+<a id="custom-file" class="anchor" href="#custom-file" aria-hidden="true"><span class="octicon octicon-link"></span></a><h3>
+<a id="custom-file-1" class="anchor" href="#custom-file-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Custom File</h3>
+</h1>
+
+<p>The SaveHandler supports both inherited and custom files for use. Sample outputs can be found here: <a href="/SaveHandler/bin">Sample Files</a></p>
+
+<pre><code>
+// Custom Inheriated Class.
+[Serializable]
+public class CustomXmlFile : XmlFile
+{
+    public CustomXmlFile()
+    {
+        Title = "CustomXmlFile";
+        Element1 = 0;
+        Element2 = "value";
+    }
+
+    [XmlElement]
+    public short Element1;
+
+    [XmlElement("Element2")]
+    public string Element2;
+}
+
+// Custom Xml File.
+[Serializable]
+public class SampleFile
+{
+  public SampleFile()
+  {
+      listItems = new List&lt;string&gt;();
+      listItemsArray = listItems;
+  }
+
+  ~SampleFile()
+  {
+      if (listItems != null)
+          listItems = null;
+
+      if (listItemsArray != null)
+          listItemsArray = null;
+  }
+
+  [XmlElement]
+  public List&lt;string&gt; listItems = null;
+
+  [XmlArray]
+  public List&lt;string&gt; listItemsArray = null;
+}
+</code></pre>
+
+<h1>
+<a id="methods" class="anchor" href="#methods" aria-hidden="true"><span class="octicon octicon-link"></span></a><h3>
+<a id="methods-1" class="anchor" href="#methods-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Methods</h3>
+</h1>
+
+<h5>
+<a id="getfilestring-location" class="anchor" href="#getfilestring-location" aria-hidden="true"><span class="octicon octicon-link"></span></a>GetFile(string location)</h5>
+
+<p>Attempts to retrieve a loaded file from a hashtable. If the file does not exist, an attempt will be made to load it. If the file doesn't exist and/or the path is incorrect, it will return NULL.</p>
+
+<pre><code>// Attempt to get a loaded file
+string location = @"..\MyXmlFile.xml";
+XmlFile file = saveHandler.GetFile&lt;XmlFile&gt;(location);
+</code></pre>
+
+<h5>
+<a id="removeloadedfilestring-location" class="anchor" href="#removeloadedfilestring-location" aria-hidden="true"><span class="octicon octicon-link"></span></a>RemoveLoadedFile(string location)</h5>
+
+<p>Attempts to remove a loaded file from the hashtable.</p>
+
+<pre><code>// Remove the loaded file
+string location = @"..\MyXmlFile.xml";
+saveHandler.RemoveLoadedFile(location);
+</code></pre>
+
+<h5>
+<a id="deletefilestring-location" class="anchor" href="#deletefilestring-location" aria-hidden="true"><span class="octicon octicon-link"></span></a>DeleteFile(string location)</h5>
+
+<p>Attempts to remove a loaded file from the hashtable, and deletes the file from the computer.</p>
+
+<pre><code>// Delete the loaded file
+string location = @"..\MyXmlFile.xml";
+saveHandler.DeleteFile(location);
+</code></pre>
+
+<h5>
+<a id="createfilestring-location-t-file-bool-overwrite" class="anchor" href="#createfilestring-location-t-file-bool-overwrite" aria-hidden="true"><span class="octicon octicon-link"></span></a>CreateFile(string location, T file, bool overwrite)</h5>
+
+<p>Attempts to create a new file, and loads it to a hashtable. If the file exists, an overwrite is required to replace the currently exiting file. </p>
+
+<pre><code>// Create a new XmlFile. Will
+// overwrite if file already exists.
+string location = @"..\MyXmlFile.xml";
+saveHandler.CreateFile&lt;XmlFile&gt;(location, new XmlFile(), true);
+</code></pre>
+
+<h5>
+<a id="savefilestring-location" class="anchor" href="#savefilestring-location" aria-hidden="true"><span class="octicon octicon-link"></span></a>SaveFile(string location)</h5>
+
+<p>Attempts to save the file. False will be returned if the file doesn't exist and/or a save attempt failed.</p>
+
+<pre><code>// Save the file.
+string location = @"..\MyXmlFile.xml";
+saveHandler.SaveFile&lt;XmlFile&gt;(location);
+</code></pre>
+      </section>
+
+      <footer>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <p>this project by <a href="https://github.com/Palmer11">Palmer11</a> can be found on <a href="https://github.com/Palmer11/csharp-SaveHandler">GitHub</a></p>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+        <p>Generated with <a href="https://pages.github.com">GitHub Pages</a> using Merlot</p>
+        <span class="octocat"></span>
+      </footer>
+
+    </div>
+
+    
+  </body>
+</html>
